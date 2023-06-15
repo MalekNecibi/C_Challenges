@@ -6,7 +6,7 @@ string(REPLACE " " "_" ProjectId ${ProjectId})
 project(${ProjectId})
 
 set(CMAKE_CXX_FLAGS "-std=c++0x -g -Wall -Werror")
-i#set(CMAKE_C_FLAGS "-std=c11 -g -Wall -Werror")
+set(CMAKE_C_FLAGS "-std=c11 -g -Wall -Werror")
 set(CMAKE_C_FLAGS "-std=c11 -g -Wall -Wextra")
 
 # Link runTests with what we want to test and the GTest and pthread library
