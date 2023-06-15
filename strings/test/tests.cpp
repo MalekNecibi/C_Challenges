@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 extern "C" {
-	#include "../include/sstring.h"
+	#include "../include/strings.h"
 }
 
 #include <gtest/gtest.h>
@@ -234,16 +234,41 @@ TEST (string_to_int, CannotConvertString) {
 	int value = 0;
 	EXPECT_EQ(false,string_to_int(str,&value));
 	EXPECT_EQ(0,value);
-
 }
-
 
 TEST (string_to_int, MessyCorrectString) {
 	const char *str = "1024 1048";
 	int value = 0;
 	EXPECT_EQ(true,string_to_int(str,&value));
 	EXPECT_EQ(1024,value);
+}
 
+TEST (string_to_int, SimpleNegativeString) {
+	const char *str = "-7";
+	int value = 0;
+	EXPECT_EQ(true,string_to_int(str,&value));
+	EXPECT_EQ(-7,value);
+}
+
+TEST (string_to_int, MessyNegativeString) {
+	const char *str = "-4096 -262144";
+	int value = 0;
+	EXPECT_EQ(true,string_to_int(str,&value));
+	EXPECT_EQ(-4096,value);
+}
+
+TEST (string_to_int, PositiveOverflowString) {
+	const char *str = "5000000000";
+	int value = 0;
+	EXPECT_EQ(false,string_to_int(str,&value));
+	EXPECT_EQ(0,value);
+}
+
+TEST (string_to_int, NegativeOverflowString) {
+	const char *str = "-5000000000";
+	int value = 0;
+	EXPECT_EQ(false,string_to_int(str,&value));
+	EXPECT_EQ(0,value);
 }
 
 
