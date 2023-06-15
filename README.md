@@ -1,18 +1,19 @@
-# C Language Challenges
-# credit : Prof. Jim Ries
+## C Language Challenges
+
+**Malek Necibi**
 
 
-# Learning Modules
-Set 1:
+### Challenge Sets:
 
 - arrays
 - strings
 - system programming
 - bits
-
-Set 2:
-
 - allocation
 - debug
 - error\_handling
 - structures
+
+---
+
+*credit: Professor Jim Ries*
