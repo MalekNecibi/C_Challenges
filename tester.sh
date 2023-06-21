@@ -13,9 +13,11 @@ if [ ! -f "./CMakeLists.txt" ] ; then
     exit 1
 fi
 
-echo
-echo Removing old build directory
-rm -r build/
+if [ -d "./build" ]; then
+    echo
+    echo Removing old build directory
+    rm -r build/
+fi
 
 echo Creating build directory
 mkdir -p build
@@ -26,26 +28,25 @@ if [ $INSIDE_BUILD_DIR -ne 0 ] ; then
     exit 1
 fi
 
-#echo
-#echo Removing old Build Environment
-#rm -r ./*
-
 echo
 echo Building Test Environment...
-sleep 1
 
 cmake ..
 echo
 echo CMake Complete
+echo CTest Environment Complete
 
+echo
+echo Building Make and GTest
 make
 echo
 echo Make Complete
 
+
 echo
 echo Running Tests...
-sleep 1
-./$TESTER_FILE
+#./$TESTER_FILE
+ctest -V --output-on-failure
 TESTER_RESPONSE_CODE=$?
 
 echo

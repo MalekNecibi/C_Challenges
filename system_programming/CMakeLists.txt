@@ -19,5 +19,7 @@ target_link_libraries(${PROJECT_NAME}_tester
                       pthread)
 
 enable_testing()
-add_test(NAME    ${PROJECT_NAME}_test
-         COMMAND ${PROJECT_NAME}_test)
+add_test(NAME    ${PROJECT_NAME}_tester
+         COMMAND ${PROJECT_NAME}_tester)
+
+file(COPY test DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

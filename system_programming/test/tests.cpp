@@ -36,7 +36,7 @@ TEST (bulk_read, BadInputFilename) {
 }
 
 TEST (bulk_read, NonExistingInputFilename) {
-	const char *input_filename = "dat.binary";
+	const char *input_filename = "test/dat.binary";
 	char dst[20];
 	const size_t offset = 0;
 	const size_t dst_size = 20;
@@ -46,7 +46,7 @@ TEST (bulk_read, NonExistingInputFilename) {
 }
 
 TEST (bulk_read, NullDst) {
-	const char *input_filename = "dat.bin";
+	const char *input_filename = "test/dat.bin";
 	char *dst = NULL;
 	const size_t offset = 0;
 	const size_t dst_size = 20;
@@ -56,7 +56,7 @@ TEST (bulk_read, NullDst) {
 }
 
 TEST (bulk_read, BadOffset) {
-	const char *input_filename = "dat.bin";
+	const char *input_filename = "test/dat.bin";
 	char dst[20];
 	const size_t offset = 21;
 	const size_t dst_size = 20;
@@ -65,7 +65,7 @@ TEST (bulk_read, BadOffset) {
 }
 
 TEST (bulk_read, ZeroDstSize) {
-	const char *input_filename = "dat.bin";
+	const char *input_filename = "test/dat.bin";
 	char dst[20];
 	const size_t offset = 0;
 	const size_t dst_size = 0;
@@ -74,7 +74,7 @@ TEST (bulk_read, ZeroDstSize) {
 }
 
 TEST (bulk_read, CorrectFileReadWithZeroOffset) {
-	const char *input_filename = "../test/dat.bin";
+	const char *input_filename = "test/dat.bin";
 	char dst[20];
 	const size_t offset = 0;
 	const size_t dst_size = 20;
@@ -84,7 +84,7 @@ TEST (bulk_read, CorrectFileReadWithZeroOffset) {
 }
 
 TEST (bulk_read, CorrectFileReadWithMiddleOffset) {
-	const char *input_filename = "../test/dat.bin";
+	const char *input_filename = "test/dat.bin";
 	char dst[20];
 	const size_t offset = 10;
 	const size_t dst_size = 10;
@@ -124,7 +124,7 @@ TEST (bulk_write, BadInputFilenames) {
 }
 
 TEST (bulk_write, NullDst) {
-	const char *input_filename = "out.bin";
+	const char *input_filename = "test/out.bin";
 	char *src = NULL;
 	const size_t offset = 0;
 	const size_t src_size = 20;
@@ -134,7 +134,7 @@ TEST (bulk_write, NullDst) {
 }
 
 TEST (bulk_write, ZeroDstSize) {
-	const char *input_filename = "out.bin";
+	const char *input_filename = "test/out.bin";
 	char src[20];
 	const size_t offset = 0;
 	const size_t src_size = 0;
@@ -143,7 +143,7 @@ TEST (bulk_write, ZeroDstSize) {
 }
 
 TEST (bulk_write, CorrectFileReadWithZeroOffset) {
-	const char *input_filename = "../test/out.bin";
+	const char *input_filename = "test/out.bin";
 	char src[20];
 	memset(src,98,20);
 	const size_t offset = 0;
@@ -154,7 +154,7 @@ TEST (bulk_write, CorrectFileReadWithZeroOffset) {
 }
 
 TEST (bulk_write, CorrectFileReadWithMiddleOffset) {
-	const char *input_filename = "../test/out.bin";
+	const char *input_filename = "test/out.bin";
 	char src[20];
 	memset(src,98,20);
 	const size_t offset = 10;
@@ -165,7 +165,7 @@ TEST (bulk_write, CorrectFileReadWithMiddleOffset) {
 }
 
 TEST (bulk_write, ExpandingOffset) {
-	const char *input_filename = "../test/offset_fun.bin";
+	const char *input_filename = "test/offset_fun.bin";
 	char src[20];
 	memset(src,98,20);
 	const size_t offset = 21;
@@ -186,21 +186,21 @@ TEST (file_stat, NullQueryFilename) {
 }
 
 TEST (file_stat, NullFileStats) {
-	const char *query_filename = "../test/out.bin";
+	const char *query_filename = "test/out.bin";
 	struct stat *file_stats = NULL;
 	bool res = file_stat(query_filename,file_stats);
 	EXPECT_EQ(res,false);
 }
 
 TEST (file_stat, IncorrectFile) {
-	const char *query_filename = "../test/wrong_file.bin";
+	const char *query_filename = "test/wrong_file.bin";
 	struct stat file_stats;
 	bool res = file_stat(query_filename,&file_stats);
 	EXPECT_EQ(res,false);
 }
 
 TEST (file_stat, CorrectFilename) {
-	const char *query_filename = "../test/offset_fun.bin";
+	const char *query_filename = "test/offset_fun.bin";
 	struct stat file_stats;
 	bool res = file_stat(query_filename,&file_stats);
 	EXPECT_EQ(res,true);
@@ -248,7 +248,7 @@ TEST (endianess_converter, GoodConversionToLinuxEndianess) {
 		exp_data[i] = i + 1;
 	}
 
-	int fd = open("../test/WrongEndianData.bin",O_RDONLY);
+	int fd = open("test/WrongEndianData.bin",O_RDONLY);
 	read(fd,&src_data,20 * sizeof(uint32_t));
 	close(fd);
 

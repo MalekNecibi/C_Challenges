@@ -124,7 +124,7 @@ TEST (array_locate, FoundTarget) {
 
 
 TEST (array_serialize, NullData) {
-	const char* dst_file = "testing_file.dat";
+	const char* dst_file = "test/testing_file.dat";
 	EXPECT_EQ(false,array_serialize(NULL,dst_file,sizeof(int),5));
 }
 
@@ -134,13 +134,13 @@ TEST (array_serialize, NullFileName) {
 }
 
 TEST (array_serialize, ZeroElemSize) {
-	const char* dst_file = "testing_file.dat";
+	const char* dst_file = "test/testing_file.dat";
 	int data[5] = {0};
 	EXPECT_EQ(false,array_serialize(data,dst_file,0,5));
 }
 
 TEST (array_serialize, ZeroCount) {
-	const char* dst_file = "testing_file.dat";
+	const char* dst_file = "test/testing_file.dat";
 	int data[5] = {0};
 	EXPECT_EQ(false,array_serialize(data,dst_file,sizeof(int),0));
 }
@@ -179,7 +179,7 @@ TEST (array_serialize, GoodFileName) {
 */
 
 TEST (array_deserialize, NullData) {
-	const char* src_file = "testing_file.dat";
+	const char* src_file = "test/testing_file.dat";
 	EXPECT_EQ(false,array_deserialize(src_file,NULL,sizeof(int),5));
 }
 
@@ -189,13 +189,13 @@ TEST (array_deserialize, NullFileName) {
 }
 
 TEST (array_deserialize, ZeroElemSize) {
-	const char* src_file = "testing_file.dat";
+	const char* src_file = "test/testing_file.dat";
 	int data[5] = {0};
 	EXPECT_EQ(false,array_deserialize(src_file,data,0,5));
 }
 
 TEST (array_deserialize, ZeroCount) {
-	const char* src_file = "testing_file.dat";
+	const char* src_file = "test/testing_file.dat";
 	int data[5] = {0};
 	EXPECT_EQ(false,array_deserialize(src_file,data,sizeof(int),0));
 }
