@@ -12,6 +12,6 @@ add_subdirectory(bitmap)
 add_subdirectory(debug)
 add_subdirectory(error_handling)
 add_subdirectory(structures)
-#add_subdirectory(allocation)
+add_subdirectory(allocation)
 
 enable_testing()
