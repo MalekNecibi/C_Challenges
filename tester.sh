@@ -5,18 +5,27 @@
 # enter one of the challenge directories        (`cd arrays`)
 # run this script                               (`../tester.sh`)
 
-CHALLENGE=${PWD##*/}    # current directory
-TESTER_FILE="${CHALLENGE}_tester"
 
 if [ ! -f "./CMakeLists.txt" ] ; then
     echo "ERROR: Couldn't locate CMake build instructions (CMakeLists.txt)"
     exit 1
 fi
 
-if [ -d "./build" ]; then
+PATH_TO_DELETE=$(pwd)/build
+if [ -d "${PATH_TO_DELETE}" ]; then
     echo
+    
+    # only delete after confirmation
+    read -p "Overwrite directory '${PATH_TO_DELETE}'? [y/N] " yn
+
+    if [ "${yn}" != 'y' ] ; then
+        echo "Aborting..."
+        exit 1
+    fi
+    
     echo Removing old build directory
-    rm -r build/
+    rm -rf "${PATH_TO_DELETE}"
+    echo
 fi
 
 echo Creating build directory
@@ -45,7 +54,6 @@ echo Make Complete
 
 echo
 echo Running Tests...
-#./$TESTER_FILE
 ctest -V --output-on-failure
 TESTER_RESPONSE_CODE=$?
 
@@ -53,7 +61,7 @@ echo
 if [ $TESTER_RESPONSE_CODE -ne 0 ] ; then
     echo "Testing Ended Unexpectedly (WARNING)"
 else
-    echo Testing Complete
+    echo Testing Complete!
 fi
 
 cd ..
